@@ -1,21 +1,28 @@
 package com.ubs.projectinterviewubs.reader;
 
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.item.json.JacksonJsonObjectReader;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.batch.item.json.builder.JsonItemReaderBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
-import com.ubs.projectinterviewubs.domain.Item;
+import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
 public class ReaderConfig {
 
 	@StepScope
 	@Bean
-	public JsonItemReader<Item> jsonItemReader() {
-		return new JsonItemReaderBuilder<Item>()
-				.jsonObjectReader(new JacksonJsonObjectReader<>(Item.class))
-				.resource(new ClassPathResource("Files/data_1.sjon"));
+	public JsonItemReader<ProductItem> jsonItemReader(
+		@Value("#{jobParameters['fileItemProduct']}") Resource fileItemProduct) {
+		return new JsonItemReaderBuilder<ProductItem>()
+				.jsonObjectReader(new JacksonJsonObjectReader<>(ProductItem.class))
+				.resource(fileItemProduct)
+				.name("jsonItemReader")
+				.build();
 	}
 }

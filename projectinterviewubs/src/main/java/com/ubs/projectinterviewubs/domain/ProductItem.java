@@ -2,13 +2,13 @@ package com.ubs.projectinterviewubs.domain;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class ProductItem {
 	
 	private String product;
 	
 	private Integer quantity;
 	
-	private BigDecimal price;
+	private String price;
 	
 	private String type;
 	
@@ -32,11 +32,11 @@ public class Item {
 		this.quantity = quantity;
 	}
 
-	public BigDecimal getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -62,6 +62,12 @@ public class Item {
 
 	public void setOrigin(String origin) {
 		this.origin = origin;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductItem [product=" + product + ", quantity=" + quantity + ", price=" + price + ", type=" + type
+				+ ", industry=" + industry + ", origin=" + origin + "]";
 	} 
 	
 }
