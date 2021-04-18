@@ -2,10 +2,10 @@ package com.ubs.projectinterviewubs.step;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.step.tasklet.Tasklet;
-import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,13 +18,14 @@ public class StepConfig {
 	private StepBuilderFactory stepBuilderFactory;
 	
 	@Bean
-	public Step readerFileJsonStep(ItemReader<ProductItem> readerFileJsonReader, 
-			ItemWriter<ProductItem> readerFileJsonWriter) {
+	public Step readerFileJsonStep(
+			@Qualifier("fileDataOneJsonItemReader") JsonItemReader<ProductItem> fileDataOneJsonItemReader, 
+			ItemWriter<ProductItem> dataBaseItemProductWriter) {
 		return stepBuilderFactory
 				.get("readerFileJsonStep")
-				.<ProductItem, ProductItem>chunk(1)
-				.reader(readerFileJsonReader)
-				.writer(readerFileJsonWriter)
+				.<ProductItem, ProductItem>chunk(1000)
+				.reader(fileDataOneJsonItemReader)
+				.writer(dataBaseItemProductWriter)
 				.build();
 	}
 	

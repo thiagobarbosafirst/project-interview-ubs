@@ -8,9 +8,8 @@ import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
 public class WriterConfig {
-	@Bean
-	public ItemWriter<ProductItem> leituraArquivoJson() {
-		return items -> items.forEach(System.out::println);
-	}
-
+	/*
+	 * @Bean public ItemWriter<ProductItem> leituraArquivoJson() { return items ->
+	 * items.forEach(System.out::println); }
+	 */
 }

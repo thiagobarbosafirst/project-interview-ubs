@@ -2,18 +2,23 @@ package com.ubs.projectinterviewubs.domain;
 
 import java.math.BigDecimal;
 
+import org.apache.logging.log4j.util.Strings;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class ProductItem {
-	
+	@JsonProperty("product")
 	private String product;
-	
+	@JsonProperty("quantity")
 	private Integer quantity;
-	
+	@JsonProperty("price")
 	private String price;
-	
+	@JsonProperty("type")
 	private String type;
-	
+	@JsonProperty("industry")
 	private String industry;
-	
+	@JsonProperty("origin")
 	private String origin;
 
 	public String getProduct() {
@@ -63,11 +68,15 @@ public class ProductItem {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
+	
+	public boolean isValid() {
+		return !Strings.isBlank(product) && !Strings.isBlank(type) && !Strings.isBlank(industry);
+	}
 
 	@Override
 	public String toString() {
 		return "ProductItem [product=" + product + ", quantity=" + quantity + ", price=" + price + ", type=" + type
 				+ ", industry=" + industry + ", origin=" + origin + "]";
-	} 
+	}
 	
 }
