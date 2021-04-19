@@ -3,7 +3,9 @@ package com.ubs.projectinterviewubs.step;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.json.JsonItemReader;
+import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +22,14 @@ public class StepConfig {
 	@Bean
 	public Step readerFileJsonStep(
 			@Qualifier("fileDataOneJsonItemReader") JsonItemReader<ProductItem> fileDataOneJsonItemReader, 
-			ItemWriter<ProductItem> dataBaseItemProductWriter) {
+			ClassifierCompositeItemWriter<ProductItem> productClassifierWriter,
+			FlatFileItemWriter<ProductItem> createFileWithInvalidProductWriter) {
 		return stepBuilderFactory
 				.get("readerFileJsonStep")
-				.<ProductItem, ProductItem>chunk(1000)
+				.<ProductItem, ProductItem>chunk(10000)
 				.reader(fileDataOneJsonItemReader)
-				.writer(dataBaseItemProductWriter)
+				.writer(productClassifierWriter)
+				.stream(createFileWithInvalidProductWriter)
 				.build();
 	}
 	

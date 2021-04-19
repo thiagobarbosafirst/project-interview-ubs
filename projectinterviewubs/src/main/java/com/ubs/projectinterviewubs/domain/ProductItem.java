@@ -70,7 +70,7 @@ public class ProductItem {
 	}
 	
 	public boolean isValid() {
-		return !Strings.isBlank(product) && !Strings.isBlank(type) && !Strings.isBlank(industry);
+		return !Strings.isBlank(industry);
 	}
 
 	@Override
