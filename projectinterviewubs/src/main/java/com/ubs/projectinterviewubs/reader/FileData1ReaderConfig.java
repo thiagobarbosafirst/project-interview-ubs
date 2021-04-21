@@ -1,6 +1,5 @@
 package com.ubs.projectinterviewubs.reader;
 
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.json.JacksonJsonObjectReader;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.batch.item.json.builder.JsonItemReaderBuilder;
@@ -11,15 +10,15 @@ import org.springframework.core.io.FileSystemResource;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class FileData_1ReaderConfig {
+public class FileData1ReaderConfig {
 	
-	@StepScope
 	@Bean
-	public JsonItemReader<ProductItem> fileDataOneJsonItemReader() {
+	public JsonItemReader<ProductItem> fileDataJsonOneItemReader() {
 		JsonItemReader<ProductItem> reader = new JsonItemReaderBuilder<ProductItem>()
 				.jsonObjectReader(new JacksonJsonObjectReader<>(ProductItem.class))
 				.resource(new FileSystemResource("files/data_1.json"))
-				.name("fileDataOneJsonItemReader")
+				.name("fileDataJsonOneItemReader")
+				.saveState(false)
 				.build();
 		return reader;
 	}
