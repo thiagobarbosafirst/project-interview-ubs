@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class ProductClassifierData1WriterConfig {
+public class ProductClassifierData2WriterConfig {
 	@Bean
-	public ClassifierCompositeItemWriter<ProductItem> productClassifierData1Writer(
+	public ClassifierCompositeItemWriter<ProductItem> productClassifierData2Writer(
 			JdbcBatchItemWriter<ProductItem> dataBaseItemProductWriter,
-			FlatFileItemWriter<ProductItem> createFileWithInvalidProductData1Writer) {
+			FlatFileItemWriter<ProductItem> createFileWithInvalidProductData2Writer) {
 		return new ClassifierCompositeItemWriterBuilder<ProductItem>()
-				.classifier(classifier(dataBaseItemProductWriter, createFileWithInvalidProductData1Writer))
+				.classifier(classifier(dataBaseItemProductWriter, createFileWithInvalidProductData2Writer))
 				.build();
 	}
 
