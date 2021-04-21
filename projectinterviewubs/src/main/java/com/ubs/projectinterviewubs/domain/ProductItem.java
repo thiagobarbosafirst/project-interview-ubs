@@ -1,8 +1,5 @@
 package com.ubs.projectinterviewubs.domain;
 
-import java.math.BigDecimal;
-
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.apache.logging.log4j.util.Strings;
@@ -12,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductItem {
 	
-	@NotNull
 	@Size(min=1, max=20)
 	@JsonProperty("product")
 	private String product;
@@ -23,21 +19,18 @@ public class ProductItem {
 	@JsonProperty("price")
 	private String price;
 	
-	@NotNull
 	@Size(min=1, max=10)
 	@JsonProperty("type")
 	private String type;
 	
-	@NotNull
 	@Size(min=1, max=120)
 	@JsonProperty("industry")
 	private String industry;
 	
-	@NotNull
 	@Size(min=1, max=10)
 	@JsonProperty("origin")
 	private String origin;
-
+	
 	public String getProduct() {
 		return product;
 	}
@@ -87,7 +80,8 @@ public class ProductItem {
 	}
 	
 	public boolean isValid() {
-		return !Strings.isBlank(industry);
+		return !Strings.isBlank(product) && !Strings.isBlank(type) 
+				&& !Strings.isBlank(industry) && !Strings.isBlank(origin);
 	}
 
 	@Override
