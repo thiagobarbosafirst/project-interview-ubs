@@ -13,6 +13,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
+import com.ubs.projectinterviewubs.config.Constants;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
@@ -23,8 +24,6 @@ public class CreateFileWithInvalidProductData3Writer {
 	
 	String[] names = new String [] { "product", "quantity", "price", "type", "industry", "origin"};
 	
-	private final String FILE_NAME = "src/main/resources/fileInvalidsProductsData3.txt";
-	
 	@Bean
 	public FlatFileItemWriter<ProductItem> executeCreateFileWithInvalidProductData3Writer() {
 		  //Path newFilePath = Paths.get(FILE_NAME);
@@ -32,7 +31,7 @@ public class CreateFileWithInvalidProductData3Writer {
 		   
 	   return new FlatFileItemWriterBuilder<ProductItem>()
 			   .name("createFileWithInvalidProductData3")
-			   .resource(new FileSystemResource("src/main/resources/reprocess/fileInvalidsProductsData3.txt"))
+			   .resource(new FileSystemResource(Constants.DIR_REPROCESS_INVALIDS_DATA3))
 			   .delimited()
 			   .names(names)
 			   .build();

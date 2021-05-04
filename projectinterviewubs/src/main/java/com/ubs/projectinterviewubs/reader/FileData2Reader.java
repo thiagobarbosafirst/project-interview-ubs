@@ -14,6 +14,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
+import com.ubs.projectinterviewubs.config.Constants;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
@@ -24,7 +25,7 @@ public class FileData2Reader {
 
 	@Bean
 	public JsonItemReader<ProductItem> fileDataJsonTwoItemReader() throws IOException {
-		Resource resource = resourceLoader.getResource("classpath:files/data_2.json");
+		Resource resource = resourceLoader.getResource(Constants.DIR_FILES_DATA2);
 		JsonItemReader<ProductItem> reader = new JsonItemReaderBuilder<ProductItem>()
 				.jsonObjectReader(new JacksonJsonObjectReader<>(ProductItem.class))
 				.resource(resource)
