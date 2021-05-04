@@ -11298,3 +11298,27 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.io.InputStream.cl
 2021-05-04 14:13:25,649 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-2 - Shutdown completed.
 2021-05-04 14:13:25,650 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
 2021-05-04 14:13:25,653 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-05-04 14:38:30,039 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.1.7.Final
+2021-05-04 14:38:30,087 INFO c.u.p.ProjectinterviewubsApplication [main] Starting ProjectinterviewubsApplication using Java 15.0.2 on matias-Inspiron-3442 with PID 2587 (/home/matias/Documentos/developer/projetos-pessoais/project-interview-ubs/projectinterviewubs/target/classes started by matias in /home/matias/Documentos/developer/projetos-pessoais/project-interview-ubs/projectinterviewubs)
+2021-05-04 14:38:30,089 INFO c.u.p.ProjectinterviewubsApplication [main] No active profile set, falling back to default profiles: default
+2021-05-04 14:38:31,309 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-05-04 14:38:31,774 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-05-04 14:38:31,935 INFO o.s.b.c.r.s.JobRepositoryFactoryBean [main] No database type set, using meta data indicating: MYSQL
+2021-05-04 14:38:31,969 INFO o.s.b.c.l.s.SimpleJobLauncher [main] No TaskExecutor has been set, defaulting to synchronous executor.
+2021-05-04 14:38:32,107 INFO c.u.p.ProjectinterviewubsApplication [main] Started ProjectinterviewubsApplication in 2.551 seconds (JVM running for 4.071)
+2021-05-04 14:38:32,250 INFO o.s.b.c.l.s.SimpleJobLauncher [main] Job: [FlowJob: [name=fileJsonParallelJob]] launched with the following parameters: [{}]
+2021-05-04 14:38:32,379 INFO o.s.b.c.j.SimpleStepHandler [SimpleAsyncTaskExecutor-1] Executing step: [readerFileJsonTwoStep]
+2021-05-04 14:38:32,418 INFO o.s.b.c.j.SimpleStepHandler [SimpleAsyncTaskExecutor-2] Executing step: [readerFileJsonThreeStep]
+2021-05-04 14:38:32,465 INFO o.s.b.c.j.SimpleStepHandler [SimpleAsyncTaskExecutor-4] Executing step: [readerFileJsonOneStep]
+2021-05-04 14:38:32,480 INFO c.z.h.HikariDataSource [SimpleAsyncTaskExecutor-1] HikariPool-2 - Starting...
+2021-05-04 14:38:32,482 INFO o.s.b.c.j.SimpleStepHandler [SimpleAsyncTaskExecutor-3] Executing step: [readerFileJsonFourStep]
+2021-05-04 14:38:32,543 INFO c.z.h.HikariDataSource [SimpleAsyncTaskExecutor-1] HikariPool-2 - Start completed.
+2021-05-04 14:38:37,370 INFO o.s.b.c.s.AbstractStep [SimpleAsyncTaskExecutor-1] Step: [readerFileJsonTwoStep] executed in 4s988ms
+2021-05-04 14:38:37,497 INFO o.s.b.c.s.AbstractStep [SimpleAsyncTaskExecutor-2] Step: [readerFileJsonThreeStep] executed in 5s79ms
+2021-05-04 14:38:37,879 INFO o.s.b.c.s.AbstractStep [SimpleAsyncTaskExecutor-4] Step: [readerFileJsonOneStep] executed in 5s413ms
+2021-05-04 14:38:40,902 INFO o.s.b.c.s.AbstractStep [SimpleAsyncTaskExecutor-3] Step: [readerFileJsonFourStep] executed in 8s420ms
+2021-05-04 14:38:40,970 INFO o.s.b.c.l.s.SimpleJobLauncher [main] Job: [FlowJob: [name=fileJsonParallelJob]] completed with the following parameters: [{}] and the following status: [COMPLETED] in 8s663ms
+2021-05-04 14:38:40,983 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-2 - Shutdown initiated...
+2021-05-04 14:38:41,014 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-2 - Shutdown completed.
+2021-05-04 14:38:41,015 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-05-04 14:38:41,018 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
