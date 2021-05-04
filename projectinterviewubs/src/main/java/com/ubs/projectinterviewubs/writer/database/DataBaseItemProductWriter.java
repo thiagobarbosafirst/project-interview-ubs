@@ -16,10 +16,10 @@ import org.springframework.context.annotation.Configuration;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class DataBaseItemProductWriterConfig {
+public class DataBaseItemProductWriter {
 	
 	@Bean
-	public JdbcBatchItemWriter<ProductItem> dataBaseItemProductWriter(
+	public JdbcBatchItemWriter<ProductItem> executeDataBaseItemProductWriter(
 			@Qualifier("appDataSource") DataSource dataSource) {
 		return new JdbcBatchItemWriterBuilder<ProductItem>()
 				.dataSource(dataSource)

@@ -14,57 +14,57 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 @Configuration
 @EnableBatchProcessing
-public class BatchJobConfig {
+public class BatchJob {
 	
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 	
 	@Bean
 	public Job fileJsonParallelJob(
-			@Qualifier("readerFileJsonOneStep") Step fileData1StepConfig,
-			@Qualifier("readerFileJsonTwoStep") Step fileData2StepConfig,
-			@Qualifier("readerFileJsonThreeStep") Step fileData3StepConfig,
-			@Qualifier("readerFileJsonFourStep") Step fileData4StepConfig
+			@Qualifier("readerFileJsonOneStep") Step fileData1Step,
+			@Qualifier("readerFileJsonTwoStep") Step fileData2Step,
+			@Qualifier("readerFileJsonThreeStep") Step fileData3Step,
+			@Qualifier("readerFileJsonFourStep") Step fileData4Step
 			) {
 		return jobBuilderFactory
 				.get("fileJsonParallelJob")
-				.start(parallelSteps(fileData1StepConfig, fileData2StepConfig, fileData3StepConfig, fileData4StepConfig))
+				.start(parallelSteps(fileData1Step, fileData2Step, fileData3Step, fileData4Step))
 				.end()
 				.build();
 	}
 
-	private Flow parallelSteps(Step fileData1StepConfig, Step fileData2StepConfig,
-			Step fileData3StepConfig, Step fileData4StepConfig) {
+	private Flow parallelSteps(Step fileData1Step, Step fileData2Step,
+			Step fileData3Step, Step fileData4Step) {
 		return new FlowBuilder<Flow>("parallelSteps")
-				.start(fileData1Flow(fileData1StepConfig))
+				.start(fileData1Flow(fileData1Step))
 				.split(new SimpleAsyncTaskExecutor())
-				.add(fileData2Flow(fileData2StepConfig),
-						fileData3Flow(fileData3StepConfig), 
-							fileData4Flow(fileData4StepConfig))
+				.add(fileData2Flow(fileData2Step),
+						fileData3Flow(fileData3Step), 
+							fileData4Flow(fileData4Step))
 				.build();
 	}
 	
-	private Flow fileData1Flow(Step fileData1StepConfig) {
+	private Flow fileData1Flow(Step fileData1Step) {
 		return new FlowBuilder<Flow>("fileData1Flow")
-				.start(fileData1StepConfig)
+				.start(fileData1Step)
 				.build();
 	}
 	
-	private Flow fileData2Flow(Step fileData2StepConfig) {
+	private Flow fileData2Flow(Step fileData2Step) {
 		return new FlowBuilder<Flow>("fileData2Flow")
-				.start(fileData2StepConfig)
+				.start(fileData2Step)
 				.build();
 	}
 
-	private Flow fileData3Flow(Step fileData3StepConfig) {
+	private Flow fileData3Flow(Step fileData3Step) {
 		return new FlowBuilder<Flow>("fileData3Flow")
-				.start(fileData3StepConfig)
+				.start(fileData3Step)
 				.build();
 	}
 
-	private Flow fileData4Flow(Step fileData4StepConfig) {
+	private Flow fileData4Flow(Step fileData4Step) {
 		return new FlowBuilder<Flow>("fileData4Flow")
-				.start(fileData4StepConfig)
+				.start(fileData4Step)
 				.build();
 	}
 }

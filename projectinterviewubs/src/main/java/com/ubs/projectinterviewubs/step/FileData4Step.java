@@ -15,7 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class FileData2StepConfig {
+public class FileData4Step {
 	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
@@ -25,19 +25,19 @@ public class FileData2StepConfig {
 	private PlatformTransactionManager transactionManagerApp;
 	
 	@Bean
-	public Step readerFileJsonTwoStep(
-			@Qualifier("fileDataJsonTwoItemReader") JsonItemReader<ProductItem> fileDataJsonTwoItemReader, 
+	public Step readerFileJsonFourStep(
+			@Qualifier("fileDataJsonFourItemReader") JsonItemReader<ProductItem> fileDataJsonFourItemReader, 
 			ItemProcessor<ProductItem, ProductItem> validationProcessor,
-			ClassifierCompositeItemWriter<ProductItem> productClassifierData2Writer,
-			FlatFileItemWriter<ProductItem> createFileWithInvalidProductData2Writer) {
+			ClassifierCompositeItemWriter<ProductItem> executeProductClassifierData4Writer,
+			FlatFileItemWriter<ProductItem> executeCreateFileWithInvalidProductData4Writer) {
 		return stepBuilderFactory
-				.get("readerFileJsonTwoStep")
+				.get("readerFileJsonFourStep")
 				.<ProductItem, ProductItem>chunk(2000)
-				.reader(fileDataJsonTwoItemReader)
+				.reader(fileDataJsonFourItemReader)
 				.processor(validationProcessor)
-				.writer(productClassifierData2Writer)
+				.writer(executeProductClassifierData4Writer)
 				.transactionManager(transactionManagerApp)
-				.stream(createFileWithInvalidProductData2Writer)
+				.stream(executeCreateFileWithInvalidProductData4Writer)
 				.build();
 	}
 	

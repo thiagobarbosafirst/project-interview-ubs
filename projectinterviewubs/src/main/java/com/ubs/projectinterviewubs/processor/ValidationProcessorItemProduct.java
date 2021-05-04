@@ -6,7 +6,6 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.validator.BeanValidatingItemProcessor;
 import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.batch.item.validator.ValidationException;
 import org.springframework.batch.item.validator.Validator;
@@ -16,18 +15,14 @@ import org.springframework.context.annotation.Configuration;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class ValidationProcessorConfig {
+public class ValidationProcessorItemProduct {
 	
-	Logger logger = LoggerFactory.getLogger(ValidationProcessorConfig.class);
+	Logger logger = LoggerFactory.getLogger(ValidationProcessorItemProduct.class);
 	
 	private Set<ProductItem> products = new HashSet<ProductItem>();
 	
 	@Bean
 	public ItemProcessor<ProductItem, ProductItem> validationProcessor() {
-		/*
-		 * BeanValidatingItemProcessor<ProductItem> processor = new
-		 * BeanValidatingItemProcessor<>(); processor.setFilter(true);
-		 */
 		ValidatingItemProcessor<ProductItem> processor = new ValidatingItemProcessor<>();
 		processor.setValidator(validator());
 		processor.setFilter(true);

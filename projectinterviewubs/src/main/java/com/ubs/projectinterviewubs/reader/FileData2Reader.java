@@ -1,26 +1,36 @@
 package com.ubs.projectinterviewubs.reader;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.springframework.batch.item.json.JacksonJsonObjectReader;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.batch.item.json.builder.JsonItemReaderBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class FileData4ReaderConfig {
+public class FileData2Reader {
 	
+	@Autowired
+	ResourceLoader resourceLoader;
+
 	@Bean
-	public JsonItemReader<ProductItem> fileDataJsonFourItemReader() {
+	public JsonItemReader<ProductItem> fileDataJsonTwoItemReader() throws IOException {
+		Resource resource = resourceLoader.getResource("classpath:files/data_2.json");
 		JsonItemReader<ProductItem> reader = new JsonItemReaderBuilder<ProductItem>()
 				.jsonObjectReader(new JacksonJsonObjectReader<>(ProductItem.class))
-				.resource(new FileSystemResource("files/data_4.json"))
-				.name("fileDataJsonFourItemReader")
+				.resource(resource)
+				.name("fileDataJsonTwoItemReader")
 				.saveState(false)
 				.build();
 		return reader;
 	}
-
 }

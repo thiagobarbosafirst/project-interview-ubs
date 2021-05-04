@@ -2,22 +2,28 @@ package com.ubs.projectinterviewubs.writer.file;
 
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class CreateFileWithInvalidProductData1WriterConfig {
+public class CreateFileWithInvalidProductData1Writer {
 	
-	String[] names = new String [] { "quantity", "price", "type", "industry", "origin"};
+	@Autowired
+	ResourceLoader resourceLoader;
+	
+	String[] names = new String [] { "product", "quantity", "price", "type", "industry", "origin"};
 	
 	@Bean
-	public FlatFileItemWriter<ProductItem> createFileWithInvalidProductData1Writer() {
+	public FlatFileItemWriter<ProductItem> executeCreateFileWithInvalidProductData1Writer() {
 	   return new FlatFileItemWriterBuilder<ProductItem>()
 			   .name("createFileWithInvalidProductData1")
-			   .resource(new FileSystemResource("files/fileInvalidsProductsData1.txt"))
+			   .resource(new FileSystemResource("src/main/resources/reprocess/fileInvalidsProductsData1.txt"))
 			   .delimited()
 			   .names(names)
 			   .build();

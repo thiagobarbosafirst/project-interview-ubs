@@ -15,7 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class FileData1StepConfig {
+public class FileData1Step {
 	
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
@@ -28,16 +28,16 @@ public class FileData1StepConfig {
 	public Step readerFileJsonOneStep(
 			@Qualifier("fileDataJsonOneItemReader") JsonItemReader<ProductItem> fileDataJsonOneItemReader, 
 			ItemProcessor<ProductItem, ProductItem> validationProcessor,
-			ClassifierCompositeItemWriter<ProductItem> productClassifierData1Writer,
-			FlatFileItemWriter<ProductItem> createFileWithInvalidProductData1Writer) {
+			ClassifierCompositeItemWriter<ProductItem> executeProductClassifierData1Writer,
+			FlatFileItemWriter<ProductItem> executeCreateFileWithInvalidProductData1Writer) {
 		return stepBuilderFactory
 				.get("readerFileJsonOneStep")
 				.<ProductItem, ProductItem>chunk(2000)
 				.reader(fileDataJsonOneItemReader)
 				.processor(validationProcessor)
-				.writer(productClassifierData1Writer)
+				.writer(executeProductClassifierData1Writer)
 				.transactionManager(transactionManagerApp)
-				.stream(createFileWithInvalidProductData1Writer)
+				.stream(executeCreateFileWithInvalidProductData1Writer)
 				.build();
 	}
 	

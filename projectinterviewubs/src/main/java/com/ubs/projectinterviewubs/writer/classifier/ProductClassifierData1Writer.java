@@ -1,4 +1,4 @@
-package com.ubs.projectinterviewubs.writer;
+package com.ubs.projectinterviewubs.writer.classifier;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
@@ -12,20 +12,20 @@ import org.springframework.context.annotation.Configuration;
 import com.ubs.projectinterviewubs.domain.ProductItem;
 
 @Configuration
-public class ProductClassifierData4WriterConfig {
+public class ProductClassifierData1Writer {
 	@Bean
-	public ClassifierCompositeItemWriter<ProductItem> productClassifierData4Writer(
-			JdbcBatchItemWriter<ProductItem> dataBaseItemProductWriter,
-			FlatFileItemWriter<ProductItem> createFileWithInvalidProductData4Writer) {
+	public ClassifierCompositeItemWriter<ProductItem> executeProductClassifierData1Writer(
+			JdbcBatchItemWriter<ProductItem> executeDataBaseItemProductWriter,
+			FlatFileItemWriter<ProductItem> executeCreateFileWithInvalidProductData1Writer) {
 		return new ClassifierCompositeItemWriterBuilder<ProductItem>()
-				.classifier(classifier(dataBaseItemProductWriter, createFileWithInvalidProductData4Writer))
+				.classifier(classifier(executeDataBaseItemProductWriter, executeCreateFileWithInvalidProductData1Writer))
 				.build();
 	}
 
 	@SuppressWarnings("serial")
 	private Classifier<ProductItem, ItemWriter<? super ProductItem>> classifier(
 			JdbcBatchItemWriter<ProductItem> dataBaseItemProductWriter,
-			FlatFileItemWriter<ProductItem> createFileWithInvalidProductWriter) {
+			FlatFileItemWriter<ProductItem> executeCreateFileWithInvalidProductData1Writer) {
 		return new Classifier<ProductItem, ItemWriter<? super ProductItem>>() {
 
 			@Override
@@ -33,7 +33,7 @@ public class ProductClassifierData4WriterConfig {
 				if(productItem.isValid())
 					return dataBaseItemProductWriter;
 				else
-					return createFileWithInvalidProductWriter;
+					return executeCreateFileWithInvalidProductData1Writer;
 			}
 			
 		};
